@@ -1,5 +1,5 @@
 from turtle import *
-
+import time
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -21,17 +21,22 @@ def move_down():
         user_block[i].backward(20)
         
 def move_up_comp():
+    #Trying to make it based on computer but found now that it is difficult currently
+    # tf = time.gmtime(time.time())
+    # if(int(time.strftime("%S", tf))%3 == 0):
     if(comp_block[-1].ycor() >= 280):
         return None
     for i in range(2, -1, -1):
         comp_block[i].forward(20)
         
+        
 def move_down_comp():
+    # tf = time.gmtime(time.time())
+    # if(int(time.strftime("%S", tf))%3 == 0):
     if(comp_block[0].ycor() <= -275):
         return None
     for i in range(3):
         comp_block[i].backward(20)
-        
 
     
         
@@ -70,14 +75,23 @@ for i in co_bl_pos:
 
 screen.listen()
 #Now we will add functionality to move the user block according to the 
+run_comp = "UP"
 gameIsOn = True
 while gameIsOn:
-    # move_up_comp()
-    # move_down_comp()
     screen.onkeypress(key="Up", fun=move_up)
     screen.onkeypress(key="Down", fun=move_down)
     screen.onkeypress(key="w", fun=move_up_comp)
     screen.onkeypress(key="s", fun=move_down_comp)
+    # if(run_comp == "UP"):
+    #     if(comp_block[-1].ycor() == 280):
+    #         run_comp = "DOWN"
+    #     else:
+    #         move_up_comp()
+    # elif(run_comp == "DOWN"):
+    #     if(comp_block[0].ycor() == -275):
+    #         run_comp = "UP"
+    #     else:
+    #         move_down_comp()
     screen.update()
     
 
